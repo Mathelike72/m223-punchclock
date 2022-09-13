@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -38,4 +39,11 @@ public class EntryController {
        return entryService.createEntry(entry);
     }
 
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Delete a selectet Entry", description = "Delete a selectet entry and returns the new entry tabel.")
+    public Entry deleEntry(Entry entry){
+        return entryService.deleteEntry(entry);
+    }
 }

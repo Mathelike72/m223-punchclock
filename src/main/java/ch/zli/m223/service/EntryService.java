@@ -24,4 +24,9 @@ public class EntryService {
         var query = entityManager.createQuery("FROM Entry", Entry.class);
         return query.getResultList();
     }
+
+    public List<Entry> deleteEntry(Entry entry) {
+        var query = entityManager.remove("FROM Entry", Entry.class);
+        return query.getResultList();
+    }
 }
