@@ -1,10 +1,12 @@
 package ch.zli.m223.service;
 
 import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+
 
 import ch.zli.m223.model.Entry;
 
@@ -19,11 +21,6 @@ public class EntryService {
         return entry;
     }
 
-    public List<Entry> findAll() {
-        var query = entityManager.createQuery("FROM Entry", Entry.class);
-        return query.getResultList();
-    }
-
     @Transactional
     public void deleteEntry(Long id) {
         var entity = entityManager.find(Entry.class, id);
@@ -31,7 +28,13 @@ public class EntryService {
     }
 
     @Transactional
-    public Entry updateEntry(Long id, Entry entry){
-        return entityManager.merge(entry);
+    public Entry UpdateEntry(Long id, Entry entity) {
+        return entityManager.merge(entity);
     }
+
+    public List<Entry> findAll() {
+        var query = entityManager.createQuery("FROM Entry", Entry.class);
+        return query.getResultList();
+    }
+
 }

@@ -41,21 +41,16 @@ public class EntryController {
        return entryService.createEntry(entry);
     }
 
-    @Path("/delete/{id}")
     @DELETE
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Delete a selectet Entry", description = "Delete a selectet entry and returns the new entry tabel.")
-    public void delete(@PathParam("id") Long id){
+    @Path("/delete/{id}")
+    public void delete(@PathParam("id")Long id) {
         entryService.deleteEntry(id);
     }
 
-    @Path("/update/{id}")
     @PUT
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Updates an entry", description = "Updates an entry by its id")
-    public Entry update(@PathParam("id") Long id, Entry entry){
-        return entryService.updateEntry(id, entry);
+    @Path("/update/{id}")
+    public Entry update(@PathParam("id") Long id, Entry entry) {
+        return entryService.UpdateEntry(id, entry);
     }
-}
 
+}
