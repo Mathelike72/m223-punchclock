@@ -1,28 +1,27 @@
 package ch.zli.m223.model;
-
 import javax.persistence.*;
-
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
 import java.time.LocalDateTime;
-
+import java.util.Set;
 @Entity
 public class Entry {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Schema(readOnly = true)
-  @Column(name= "entry_id")
   private Long id;
-
-  @ManyToMany
-  @JoinColumn(name="id")
-  private Categorys category_id;
-
+  
   @Column(nullable = false)
   private LocalDateTime checkIn;
-
+  
   @Column(nullable = false)
   private LocalDateTime checkOut;
+ 
+  @ManyToOne
+  @JoinColumn(name="category_id", nullable=false)
+  private Category category;
+  
+  @ManyToMany
+  private Set<Tags> Tags;
 
   public Long getId() {
     return id;
@@ -46,5 +45,21 @@ public class Entry {
 
   public void setCheckOut(LocalDateTime checkOut) {
     this.checkOut = checkOut;
+  }
+
+  public Category getCategory() {
+    return category;
+  }
+
+  public Set<Tags> getTags() {
+    return Tags;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
+  }
+
+  public void setTags(Set<Tags> tags) {
+    Tags = tags;
   }
 }

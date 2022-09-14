@@ -1,5 +1,5 @@
 /workspace/src/main/java/ch/zli/m223/service/EntryService.java
-/workspace/src/main/java/ch/zli/m223/model/tag.java
+/workspace/src/main/java/ch/zli/m223/model/Tags.java
 /workspace/src/main/java/ch/zli/m223/model/Entry.java
-/workspace/src/main/java/ch/zli/m223/model/category.java
 /workspace/src/main/java/ch/zli/m223/controller/EntryController.java
+/workspace/src/main/java/ch/zli/m223/model/Category.java

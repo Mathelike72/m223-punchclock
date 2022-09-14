@@ -4,18 +4,19 @@ import javax.persistence.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Entity
-public class Tags {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(readOnly = true)
-    @Column(name="tag_id")
+    @Column(name="category_id")
     private Long id;
     
     @Column(nullable = false)
     private String title;
     
-    @ManyToMany
+    @OneToMany(mappedBy="Category")
     private Set<Entry> entries;
+    
     public Long getId(){
         return id;
     }
