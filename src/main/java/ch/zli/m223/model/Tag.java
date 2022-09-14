@@ -4,18 +4,18 @@ import javax.persistence.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Entity
-public class Tags {
+public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(readOnly = true)
-    @Column(name="tag_id")
     private Long id;
     
     @Column(nullable = false)
     private String title;
     
-    @ManyToMany
+    @ManyToMany(mappedBy = "tags")
     private Set<Entry> entries;
+    
     public Long getId(){
         return id;
     }
@@ -26,10 +26,6 @@ public class Tags {
     
     public String getTitle(){
         return title;
-    }
-    
-    public void setId(String title){
-        this.title = title;
     }
 
     public Set<Entry> getEntries() {

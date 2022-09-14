@@ -3,6 +3,7 @@ import javax.persistence.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import java.time.LocalDateTime;
 import java.util.Set;
+
 @Entity
 public class Entry {
   @Id
@@ -16,12 +17,16 @@ public class Entry {
   @Column(nullable = false)
   private LocalDateTime checkOut;
  
-  @ManyToOne
-  @JoinColumn(name="category_id", nullable=false)
+  @ManyToOne(optional = false)
   private Category category;
   
   @ManyToMany
-  private Set<Tags> Tags;
+  @JoinTable(
+    name = "entry_tags",
+    joinColumns = @JoinColumn(name="entry_id"),
+    inverseJoinColumns = @JoinColumn(name="tag_id")
+  )
+  private Set<Tag> tags;
 
   public Long getId() {
     return id;
@@ -51,15 +56,15 @@ public class Entry {
     return category;
   }
 
-  public Set<Tags> getTags() {
-    return Tags;
+  public Set<Tag> getTags() {
+    return tags;
   }
 
   public void setCategory(Category category) {
     this.category = category;
   }
 
-  public void setTags(Set<Tags> tags) {
-    Tags = tags;
+  public void setTags(Set<Tag> tags) {
+    this.tags = tags;
   }
 }
