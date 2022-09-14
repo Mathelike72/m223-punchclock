@@ -11,7 +11,12 @@ public class Entry {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Schema(readOnly = true)
+  @Column(name= "entry_id")
   private Long id;
+
+  @ManyToOne
+  @JoinColumn(name="id")
+  private category category_id;
 
   @Column(nullable = false)
   private LocalDateTime checkIn;
