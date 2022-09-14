@@ -7,7 +7,9 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -39,11 +41,21 @@ public class EntryController {
        return entryService.createEntry(entry);
     }
 
+    @Path("/delete/{id}")
     @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Delete a selectet Entry", description = "Delete a selectet entry and returns the new entry tabel.")
-    public Entry deleEntry(Entry entry){
-        return entryService.deleteEntry(entry);
+    public void delete(@PathParam("id") Long id){
+        entryService.deleteEntry(id);
+    }
+
+    @Path("/update/{id}")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Updates an entry", description = "Updates an entry by its id")
+    public Entry update(@PathParam("id") Long id, Entry entry){
+        return entryService.updateEntry(id, entry);
     }
 }
+

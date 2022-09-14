@@ -1,7 +1,6 @@
 package ch.zli.m223.service;
 
 import java.util.List;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -25,8 +24,14 @@ public class EntryService {
         return query.getResultList();
     }
 
-    public List<Entry> deleteEntry(Entry entry) {
-        var query = entityManager.remove("FROM Entry", Entry.class);
-        return query.getResultList();
+    @Transactional
+    public void deleteEntry(Long id) {
+        var entity = entityManager.find(Entry.class, id);
+        entityManager.remove(entity);
+    }
+
+    @Transactional
+    public Entry updateEntry(Long id, Entry entry){
+        return entityManager.merge(entry);
     }
 }
