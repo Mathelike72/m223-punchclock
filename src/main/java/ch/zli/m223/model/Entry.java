@@ -14,9 +14,9 @@ public class Entry {
   @Column(name= "entry_id")
   private Long id;
 
-  @ManyToOne
+  @ManyToMany
   @JoinColumn(name="id")
-  private category category_id;
+  private Categorys category_id;
 
   @Column(nullable = false)
   private LocalDateTime checkIn;
